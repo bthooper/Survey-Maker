@@ -1,0 +1,12 @@
+<h1>Your Surveys</h1>
+<% if !@surveys.empty? %>
+  <ul>
+     <% @surveys.each do |survey| %>
+       <li><a href=""><%= survey.name %></a></li>
+       <ul>
+     <% end %>
+   <% else %>
+     <p>You curreently don't have any surveys.</p>
+     <p><a href="/surveys/new">Create a new survey</a></p>
+<% end %>
+
