@@ -23,7 +23,9 @@ class SessionController < ApplicationController
       @user = User.new(username: params[:username], firstname: params[:firstname], lastname: params[:lastname], password: params[:password], email: params[:email])
       @user.save
       session[:email] = params[:email]
-      erb :'surveys/index'
+      @my_surveys = @user.surveys
+      @all_surveys = Survey.all
+      redirect '/surveys'
     else
       redirect '/'
     end
@@ -31,7 +33,10 @@ class SessionController < ApplicationController
 
   post '/sessions' do
     login(params[:email], params[:password])
-    erb :'surveys/index'
+    @user = current_user
+    @my_surveys = @user.surveys
+    @all_surveys = Survey.all
+    redirect '/surveys' 
   end
 
   get '/logout' do

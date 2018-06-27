@@ -2,7 +2,8 @@ class SurveyController < ApplicationController
 
   get '/surveys' do
     if @user = current_user
-      @surveys = @user.surveys.all
+      @my_surveys = @user.surveys.all
+      @all_surveys = Survey.all
       erb :'surveys/index'
     end
   end
@@ -17,7 +18,11 @@ class SurveyController < ApplicationController
   end
 
   post '/surveys' do
-
+    if @user = current_user
+      @user.surveys.build(name: params[:name], description: params[:description])
+      @user.save
+      redirect '/surveys'
+    end
   end
   
   

@@ -1,3 +1,7 @@
 <h1>Create a New Survey</h1>
 
-
+<form method="post" action="/surveys">
+  <label>Survey Name: </label><input type="text" name="name" id="name" /><br /><br />
+  <label>Survey Description: </label><input type="text" name="description" id="description" /><br /><br />
+  <input type="submit" name="submit" id="submit" value="Create Survey" />
+</form>

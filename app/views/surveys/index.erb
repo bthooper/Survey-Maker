@@ -1,12 +1,27 @@
-<h1>Your Surveys</h1>
-<% if !@surveys.empty? %>
+<h1>Surveys</h1>
+
+<p>Hello, <%= @user.firstname %>.</p>
+<h2>Your Surveys</h2>
+<% if !@my_surveys.empty? %>
   <ul>
-     <% @surveys.each do |survey| %>
-       <li><a href=""><%= survey.name %></a></li>
-       <ul>
+     <% @my_surveys.each do |survey| %>
+       <li><a href=""><%= survey.name %></a><br /><%= survey.description %></li>
      <% end %>
+  </ul>
    <% else %>
      <p>You curreently don't have any surveys.</p>
-     <p><a href="/surveys/new">Create a new survey</a></p>
-<% end %>
+   <% end %>
+   <p><a href="/surveys/new">Create a new survey</a></p>
+   <h2>Surveys You Can Take</h2>
+<% if !@all_surveys.empty? %>
+  <ul>
+     <% @all_surveys.each do |survey| %>
+       <li><a href=""><%= survey.name %></a><br /><%= survey.description %></li>
+     <% end %>
+  </ul>
+   <% else %>
+     <p>No surveys available.</p>
+   <% end %>
+
+   <p><a href="/logout">Log out</a></p>
 
