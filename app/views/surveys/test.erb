@@ -1,0 +1,13 @@
+<h1>Testing Survey Form</h1>
+<h3><%= @survey[:name] %></h3>
+<h3><%= @survey[:description] %></h3>
+
+<% @survey[:questions].each do |question| %>
+  <p><%= question[:question] %></p>
+  <ul>
+  <% question[:answers].each do |answer| %>
+    <li><%= answer[:answer] %></li>
+  <% end %>
+  </ul>
+  <% end %>
+

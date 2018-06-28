@@ -19,9 +19,8 @@ class SurveyController < ApplicationController
 
   post '/surveys' do
     if @user = current_user
-      @user.surveys.build(name: params[:name], description: params[:description])
-      @user.save
-      redirect '/surveys'
+      @survey = params[:survey]
+      erb :'surveys/test'
     end
   end
   
