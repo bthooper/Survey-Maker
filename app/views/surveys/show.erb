@@ -3,5 +3,10 @@
 <h3>Questions</h3>
 <% @survey.questions.each do |question| %>
   <p><%= question.text %></p>
+  <ul>
+    <% question.answers.each do |answer| %>
+      <li><%= answer.text %></li>
+    <% end %>
+  </ul>
 <% end %>
 
