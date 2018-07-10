@@ -15,12 +15,16 @@ class SurveyController < ApplicationController
   end
 
   get "/surveys/:id" do
+    @survey = Survey.find(params[:id])
+    erb :"surveys/show"
   end
 
   post '/surveys' do
     if @user = current_user
       @survey = params[:survey]
-      erb :'surveys/test'
+      @new_survey = @user.surveys.build(name: @survey[:name], description: @survey[:description])
+      @new_survey.save 
+      redirect :"surveys/#{@new_survey.id}"
     end
   end
   
