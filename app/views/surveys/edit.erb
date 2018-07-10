@@ -1,0 +1,19 @@
+<h1>Edit Survey</h1>
+
+<form method="post" action="/surveys">
+  <label>Survey Name: </label><input type="text" name="survey[name]" id="name" value="<%= @survey.name %>"/><br /><br />
+  <label>Survey Description: </label><input type="text" name="survey[description]" id="description" value="<%= @survey.description %>"/><br /><br />
+  <h4>Questions</h2>
+  <p>For this app, you can have five questions per survey.  Each question can have four options that will be presented as mutiple choice options to the user.</p>
+  <% 5.times do |n| %>
+    <fieldset><legend>Question #<%= n+1 %></legend>
+      <label>Question: </label><input type="text" name="survey[questions][][question]" id="question_one" value="<%= @survey.questions[n].text %>"/><br /><br />
+    <% 4.times do |x| %>
+      <label>Answer #<%= x+1 %>: </label><input type="text" name="survey[questions][][answers][][answer]" id="answer_<%= n+1 %>_<%= x+1 %>" value="<%= @survey.questions[n].answers[x].text %>" /><br /><br />
+    <% end %>
+    </fieldset>
+  <% end %>
+
+  <input type="submit" name="submit" id="submit" value="Edit Survey" />
+  
+</form>

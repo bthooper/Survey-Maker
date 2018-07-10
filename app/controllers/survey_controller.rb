@@ -16,7 +16,11 @@ class SurveyController < ApplicationController
 
   get "/surveys/:id" do
     @survey = Survey.find(params[:id])
-    erb :"surveys/show"
+    if current_user == @survey.user
+      erb :"surveys/show"
+    else
+      redirect '/surveys'
+    end
   end
 
   post '/surveys' do
@@ -32,11 +36,19 @@ class SurveyController < ApplicationController
 
       @new_survey.save 
       redirect :"surveys/#{@new_survey.id}"
+    else
+      redirect '/'
     end
+
   end
   
-  
   get '/surveys/:id/edit' do
+    if @user = current_user
+      @survey = Survey.find(params[:id])
+      erb :"/surveys/edit"
+    else
+      redirect '/'
+    end
   end
   
   get '/surveys/:id/delete' do
