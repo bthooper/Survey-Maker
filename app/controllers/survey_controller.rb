@@ -23,6 +23,9 @@ class SurveyController < ApplicationController
     if @user = current_user
       @survey = params[:survey]
       @new_survey = @user.surveys.build(name: @survey[:name], description: @survey[:description])
+      @survey[:questions].each do |question|
+        @new_survey.questions.build(text: question[:question])
+      end
       @new_survey.save 
       redirect :"surveys/#{@new_survey.id}"
     end

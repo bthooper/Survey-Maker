@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180627150104) do
+ActiveRecord::Schema.define(version: 20180710135646) do
+
+  create_table "questions", force: :cascade do |t|
+    t.string  "text"
+    t.integer "survey_id"
+  end
 
   create_table "surveys", force: :cascade do |t|
     t.string  "name"

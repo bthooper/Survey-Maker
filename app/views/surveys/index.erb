@@ -5,7 +5,7 @@
 <% if !@my_surveys.empty? %>
   <ul>
      <% @my_surveys.each do |survey| %>
-       <li><%= survey.name %></a> <a href=''>Edit</a> <a href=''>Admin</a><br /><%= survey.description %></li>
+       <li><%= survey.name %></a> <a href=''>Edit</a> <a href='/surveys/<%= survey.id %>'>Admin</a><br /><%= survey.description %></li>
      <% end %>
   </ul>
    <% else %>
