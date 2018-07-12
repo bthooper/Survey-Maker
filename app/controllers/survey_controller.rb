@@ -23,6 +23,12 @@ class SurveyController < ApplicationController
     end
   end
 
+  patch "/surveys/:id" do
+    "hello"
+
+  end
+
+
   post '/surveys' do
     if @user = current_user
       @survey = params[:survey]
@@ -39,7 +45,6 @@ class SurveyController < ApplicationController
     else
       redirect '/'
     end
-
   end
   
   get '/surveys/:id/edit' do
@@ -51,11 +56,9 @@ class SurveyController < ApplicationController
     end
   end
   
-  get '/surveys/:id/delete' do
+  delete "/surveys/:id/delete" do
+    "hello! delete survey #{params[:id]}!"
   end
-
-
-
 
 
 

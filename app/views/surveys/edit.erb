@@ -1,6 +1,7 @@
 <h1>Edit Survey</h1>
 
-<form method="post" action="/surveys">
+<form method="post" action="/surveys/<%= @survey.id  %>">
+  <input type="hidden" id="hidden" name="_method" value="patch" />
   <label>Survey Name: </label><input type="text" name="survey[name]" id="name" value="<%= @survey.name %>"/><br /><br />
   <label>Survey Description: </label><input type="text" name="survey[description]" id="description" value="<%= @survey.description %>"/><br /><br />
   <h4>Questions</h2>
