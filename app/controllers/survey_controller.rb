@@ -24,8 +24,24 @@ class SurveyController < ApplicationController
   end
 
   patch "/surveys/:id" do
-    "hello"
-
+    if @user = current_user
+      @survey = Survey.find(params[:id])
+      @new_data = params[:survey]
+      @survey.name = @new_data[:name]
+      @survey.description = @new_data[:description]
+      @survey.questions.clear
+      @new_data[:questions].each do |question|
+        @new_question = @survey.questions.build(text: question[:question])
+        question[:answers].each do |answer|
+          @new_question.answers.build(text: answer[:answer])
+        end
+      end
+      @survey.save
+      redirect "surveys/#{@survey[:id]}"
+    else
+      redirect '/'
+    end
+    
   end
 
 
@@ -57,7 +73,19 @@ class SurveyController < ApplicationController
   end
   
   delete "/surveys/:id/delete" do
-    "hello! delete survey #{params[:id]}!"
+    if @user = current_user
+      @survey = Survey.find(params[:id])
+      @survey.questions.each do |question|
+        question.answers.each do |answer|
+          answer.destroy
+        end
+        question.destroy
+      end
+      @survey.destroy
+      redirect '/surveys'
+    else 
+      redirect '/'
+    end
   end
 
 
