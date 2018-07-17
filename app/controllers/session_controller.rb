@@ -19,15 +19,15 @@ class SessionController < ApplicationController
   end
 
   post '/registration' do
-    if !logged_in?
-      @user = User.new(username: params[:username], firstname: params[:firstname], lastname: params[:lastname], password: params[:password], email: params[:email])
+    if !logged_in? && User.new(username: params[:username], firstname: params[:firstname], lastname: params[:lastname], password: params[:password], email: params[:email]).valid?
+        @user = User.new(username: params[:username], firstname: params[:firstname], lastname: params[:lastname], password: params[:password], email: params[:email])
       @user.save
       session[:email] = params[:email]
       @my_surveys = @user.surveys
       @all_surveys = Survey.all
       redirect '/surveys'
     else
-      redirect '/'
+      redirect :'/'
     end
   end
 
