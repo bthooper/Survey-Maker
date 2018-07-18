@@ -21,6 +21,12 @@ After that, do:
 
 And that should launch a server for you.  Then, visit the designated address.  First you will need to register a user.  Then you can create surveys, edit them and delete them.  That's about it!
 
+#### Contributions
 
+Wanna do something with this? Feel free! You can fork this repository and branch off of master, because that's all there is!
+
+#### License
+
+This project is licensed under the [MIT License](https://mitlicense.org/), 2018 by Bryan Hooper. 
 
     
