@@ -1,5 +1,5 @@
 # My Sinatra Project
-## The start of a survey systemm.
+## The start of a survey system.
 
 ### For the Flatiron School
 
